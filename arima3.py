@@ -11,8 +11,6 @@ from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 
-
-
 df = pd.read_excel('data1116.xlsx', engine='openpyxl')
 
 for column in df.columns:
