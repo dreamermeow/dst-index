@@ -1,3 +1,5 @@
+#сохранила свою модель в classific.h5, при запуске на другом устройстве могут быть проблемы( не считает правильно), так что на всякий случай сохранила модель
+
 import numpy as np
 import pandas as pd
 import keras
@@ -103,7 +105,7 @@ model.fit(
     callbacks=[cosine_annealing, early_stopping],
     verbose=2
 )
-
+model.save("classific.h5")
 # оценка
 probs = model.predict(val_X).flatten()
 predictions = (probs > 0.55).astype("uint8")
