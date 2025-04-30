@@ -125,3 +125,8 @@ mse = mean_squared_error(test + trend[split_index:] + seasonal[split_index:], fo
 mae = mean_absolute_error(test + trend[split_index:] + seasonal[split_index:], forecast_final)
 print(f'Среднеквадратичная ошибка (MSE): {mse:.3f}')
 print(f'Средняя абсолютная ошибка (MAE): {mae:.3f}')
+
+# подсчет корреляции
+actual = test + trend[split_index:] + seasonal[split_index:]
+correlation = np.corrcoef(actual, forecast_final)[0, 1]
+print(f'Коэффициент корреляции между фактическими и прогнозными данными: {correlation:.3f}')

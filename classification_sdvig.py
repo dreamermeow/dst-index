@@ -29,7 +29,7 @@ dst_index = df.iloc[:, 24].values
 shtorm = np.where(dst_index < -50, 1, 0)
 
 # сдвиг 
-shift = 2
+shift = 24
 features = features[:-shift]  
 shtorm = shtorm[shift:]       
 
@@ -85,7 +85,8 @@ model = keras.Sequential([
     layers.BatchNormalization(),
     layers.Dropout(0.1),
     layers.Dense(1, activation="sigmoid"),
-])
+]
+)
 '''
 model.compile(
     optimizer=Adam(learning_rate=1e-3),
@@ -108,7 +109,7 @@ model.fit(
 model.save("classific.h5")
 # оценка
 probs = model.predict(val_X).flatten()
-predictions = (probs > 0.55).astype("uint8")
+predictions = (probs > 0.5).astype("uint8")
 
 tn, fp, fn, tp = confusion_matrix(val_y, predictions, labels=[0, 1]).ravel()
 print("Правильно предсказанные штормы True Positives:", tp)
